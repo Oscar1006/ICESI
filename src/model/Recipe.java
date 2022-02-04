@@ -9,8 +9,8 @@ public class Recipe {
 		ingredients = new ArrayList<Ingredient>();
 	}
 	
-	public void addIngredient(String n, double w) {
-		
+	public String addIngredient(String n, double w) {
+		String message = "";
 		Ingredient searched = null;
 		for (int i = 0; i < ingredients.size() && searched==null; i++) {
 			Ingredient current = ingredients.get(i);
@@ -24,7 +24,8 @@ public class Recipe {
 		}else {
 			Ingredient newIngredient = new Ingredient(n, w);
 			ingredients.add(newIngredient);
-		}		
+		}
+		return message;
 	}
 	
 	public List<Ingredient> getIngredients(){
