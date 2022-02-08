@@ -1,12 +1,18 @@
 package model;
 
+import exception.NegativeNumberException;
+
 public class Ingredient {
 	private String name;
 	private double weight;
 	
 	public Ingredient(String n, double w) {
 		name = n;
-		weight = w;
+		try {
+			addWeight(w);
+		} catch (NegativeNumberException e) {
+			e.printStackTrace();
+		}	
 	}
 	
 	public String getName() {
@@ -17,8 +23,21 @@ public class Ingredient {
 		return weight;
 	}
 	
-	public void addWeight(double additionalW) {
-		weight = weight + additionalW;
+	public void addWeight(double additionalW) throws NegativeNumberException {
+		if(additionalW >= 0) {
+			weight = weight + additionalW;
+		}else {
+			throw new NegativeNumberException(additionalW);
+		}
 	}
+	
+	public void removeWeight(double toRemoveW) throws NegativeNumberException {
+		if(toRemoveW >= 0) {
+			weight = weight - toRemoveW;
+		}else {
+			throw new NegativeNumberException(toRemoveW);
+		}
+	}
+	
 	
 }

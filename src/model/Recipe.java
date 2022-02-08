@@ -3,6 +3,9 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import exception.NegativeNumberException;
+
+// FALTAN LOS BUCLES
 public class Recipe {
 	private List<Ingredient> ingredients;
 	public Recipe() {
@@ -10,7 +13,7 @@ public class Recipe {
 	}
 	
 	public String addIngredient(String n, double w) {
-		String message = "";
+		String message = "Ingredient added";
 		Ingredient searched = null;
 		for (int i = 0; i < ingredients.size() && searched==null; i++) {
 			Ingredient current = ingredients.get(i);
@@ -20,7 +23,11 @@ public class Recipe {
 		}
 		
 		if(searched!=null) {
-			searched.addWeight(w);
+			try {
+				searched.addWeight(w);
+			} catch (NegativeNumberException e) {
+				e.printStackTrace();
+			}
 		}else {
 			Ingredient newIngredient = new Ingredient(n, w);
 			ingredients.add(newIngredient);
