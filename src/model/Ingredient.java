@@ -8,11 +8,7 @@ public class Ingredient {
 	
 	public Ingredient(String n, double w) {
 		name = n;
-		try {
-			addWeight(w);
-		} catch (NegativeNumberException e) {
-			e.printStackTrace();
-		}	
+		weight = w;	
 	}
 	
 	public String getName() {
